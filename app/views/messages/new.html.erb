@@ -1,2 +1,31 @@
-<h1>Messages#new</h1>
-<p>Find me in app/views/messages/new.html.erb</p>
+<h1>Create a new encrypted message</h1>
+
+<%= form_for(@message) do |f| %>
+
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The form contains <%= pluralize(@message.errors.count, "error") %>
+      </div>
+      <ul>
+        <% @message.errors.each do |attr, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_area :enc_body, size: "50x10", placeholder: "Message text" %>
+  </div>
+
+  <div class="field">
+    <p>Destroy the message after:<br>
+      <%= f.radio_button :destroy_after, "first_visit" %>
+      <%= f.label :destroy_after_first_visit, "The first visit the link"  %><br>
+      <%= f.radio_button :destroy_after, "one_hour" %>
+      <%= f.label :destroy_after_one_hour, "One hour" %>
+    </p>
+  </div>
+  <%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>
