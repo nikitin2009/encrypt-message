@@ -1,3 +1,12 @@
-<h1>
-  <%= @message.enc_body %>
-</h1>
+<h1 class="hidden" id="message"><%= @message.enc_body %></h1>
+
+
+<div id="error_explanation"></div>
+
+<%= form_with id: "pass_form" do %>
+  <%= label_tag :password, "Enter password to see the message:" %>
+  <%= password_field_tag :password, "", required: true %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
+<%= javascript_pack_tag "messages_show" %>

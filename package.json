@@ -1,5 +1,11 @@
 {
   "name": "encrypt-message",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "^4.0.7",
+    "simple-crypto-js": "^2.2.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.8.0"
+  }
 }

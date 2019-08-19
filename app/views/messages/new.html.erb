@@ -1,22 +1,29 @@
-<h1>Create a new encrypted message</h1>
+<h1>Create a new encrypted message*</h1>
 
 <%= form_for(@message) do |f| %>
 
+  <div id="error_explanation" style="color: red;" >
   <% if @message.errors.any? %>
-    <div id="error_explanation">
-      <div class="alert alert-danger">
-        The form contains <%= pluralize(@message.errors.count, "error") %>
-      </div>
-      <ul>
-        <% @message.errors.each do |attr, msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@message.errors.count, "error") %>
     </div>
+    <ul>
+      <% @message.errors.each do |attr, msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   <% end %>
+  </div>
 
   <div class="field">
-    <%= f.text_area :enc_body, size: "50x10", placeholder: "Message text" %>
+    <%= f.text_area :enc_body, size: "50x10", placeholder: "Message text", required: true %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password, "Encryption password*" %>
+    <%= password_field_tag :password, "", name: "message[password]", required: true %><br>
+    <%= label_tag :password_confirmation, "Confirm the password*" %>
+    <%= password_field_tag :password, "", name: "message[password_confirmation]", id: "password_confirmation", required: true %>
   </div>
 
   <div class="field">
@@ -29,3 +36,5 @@
   </div>
   <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>
+
+<%= javascript_pack_tag "messages_new" %>
