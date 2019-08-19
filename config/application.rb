@@ -29,5 +29,11 @@ module EncryptMessage
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Change primary key for models to use UUID
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
+    
   end
 end
