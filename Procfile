@@ -1,0 +1,1 @@
+destroy-message-worker: bundle exec sidekiq -c 2
