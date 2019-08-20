@@ -3,7 +3,8 @@ class Message < ApplicationRecord
 
   validates_presence_of :enc_body, message: "Message can't be blank"
 
-  after_save :schedule_destroy
+  after_save :schedule_destroy,
+    if: Proc.new { destroy_after == "one_hour" }
 
   private
 

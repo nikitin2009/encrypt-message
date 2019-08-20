@@ -20,6 +20,7 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
+    @message.destroy if @message.destroy_after == "first_visit"
   end
 
   def new
