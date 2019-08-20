@@ -8,6 +8,6 @@ class Message < ApplicationRecord
   private
 
     def schedule_destroy
-      DestroyMessageWorker.perform_in(1.minute, id)
+      DestroyMessageWorker.perform_in(1.hour, id)
     end
 end
