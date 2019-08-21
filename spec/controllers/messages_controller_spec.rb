@@ -2,24 +2,12 @@ require 'rails_helper'
 
 RSpec.describe MessagesController, type: :controller do
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #new" do
-    it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
+  describe "POST #create" do
+    context "with valid attributes" do
+      it "creates new message" do
+        post :create, params: { message: { enc_body: "Message body", destroy_after: "first_visit" } }
+        expect(Message.count).to eq(1)
+      end
     end
   end
 
